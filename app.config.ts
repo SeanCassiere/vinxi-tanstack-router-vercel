@@ -26,7 +26,7 @@ export default createApp({
 		{
 			type: "spa",
 			name: "client",
-			handler: "./handler.client.ts",
+			handler: "./index.html",
 			target: "browser",
 			plugins: () => [
 				TanStackRouterVite({
