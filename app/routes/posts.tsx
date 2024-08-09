@@ -22,6 +22,17 @@ function Posts() {
 				</a>
 				.
 			</p>
+			<p>
+				All data on this page is retrieved using HTTP using the Javascript{" "}
+				<a
+					href='https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch'
+					target='_blank'
+					className='text-blue-500'
+				>
+					Fetch API
+				</a>
+				.
+			</p>
 			<hr />
 			<div className='lg:grid lg:grid-cols-12'>
 				<ul className='grid gap-2 lg:col-span-4'>

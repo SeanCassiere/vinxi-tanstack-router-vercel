@@ -4,8 +4,11 @@ import {
 	Outlet,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import type { trpc } from "../trpc.config";
 
-export const Route = createRootRouteWithContext()({
+export const Route = createRootRouteWithContext<{
+	trpc: typeof trpc;
+}>()({
 	component: () => (
 		<>
 			<nav className='p-4 grid gap-2'>
@@ -31,7 +34,15 @@ export const Route = createRootRouteWithContext()({
 							to='/posts'
 							className='font-medium data-[status=active]:font-bold'
 						>
-							Posts
+							Posts (fetch)
+						</Link>
+					</li>
+					<li>
+						<Link
+							to='/invoices'
+							className='font-medium data-[status=active]:font-bold'
+						>
+							Invoices (tRPC)
 						</Link>
 					</li>
 				</ul>

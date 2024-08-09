@@ -1,6 +1,7 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 import { routeTree } from "./routeTree.gen";
+import { trpc } from "./trpc.config";
 
 import "./client-base.css";
 
@@ -8,6 +9,9 @@ import "./client-base.css";
 const router = createRouter({
 	routeTree,
 	defaultPreload: "intent",
+	context: {
+		trpc,
+	},
 });
 
 // Register the router instance for type safety

@@ -1,6 +1,6 @@
 import { createApp, createRouter, defineEventHandler } from "vinxi/http";
 
-export const POSTS = [
+const POSTS = [
 	{ id: "1", title: "First post" },
 	{ id: "2", title: "Second post" },
 	{ id: "3", title: "Third post" },
@@ -13,9 +13,9 @@ export const POSTS = [
 	{ id: "10", title: "Tenth post" },
 ];
 
-const app = createApp();
-
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const app = createApp();
 
 const postsRouter = createRouter();
 postsRouter.get(

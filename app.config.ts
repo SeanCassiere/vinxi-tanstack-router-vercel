@@ -24,6 +24,14 @@ export default createApp({
 			plugins: () => [reactRefresh()],
 		},
 		{
+			type: "http",
+			name: "trpc",
+			base: "/trpc",
+			handler: "./handler.trpc.ts",
+			target: "server",
+			plugins: () => [reactRefresh()],
+		},
+		{
 			type: "spa",
 			name: "client",
 			handler: "./index.html",

@@ -12,14 +12,22 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PostsImport } from './routes/posts'
+import { Route as InvoicesImport } from './routes/invoices'
 import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as InvoicesIndexImport } from './routes/invoices.index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as InvoicesInvoiceIdImport } from './routes/invoices.$invoiceId'
 
 // Create/Update Routes
 
 const PostsRoute = PostsImport.update({
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InvoicesRoute = InvoicesImport.update({
+  path: '/invoices',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -33,9 +41,19 @@ const PostsIndexRoute = PostsIndexImport.update({
   getParentRoute: () => PostsRoute,
 } as any)
 
+const InvoicesIndexRoute = InvoicesIndexImport.update({
+  path: '/',
+  getParentRoute: () => InvoicesRoute,
+} as any)
+
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRoute,
+} as any)
+
+const InvoicesInvoiceIdRoute = InvoicesInvoiceIdImport.update({
+  path: '/$invoiceId',
+  getParentRoute: () => InvoicesRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -49,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/invoices': {
+      id: '/invoices'
+      path: '/invoices'
+      fullPath: '/invoices'
+      preLoaderRoute: typeof InvoicesImport
+      parentRoute: typeof rootRoute
+    }
     '/posts': {
       id: '/posts'
       path: '/posts'
@@ -56,12 +81,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsImport
       parentRoute: typeof rootRoute
     }
+    '/invoices/$invoiceId': {
+      id: '/invoices/$invoiceId'
+      path: '/$invoiceId'
+      fullPath: '/invoices/$invoiceId'
+      preLoaderRoute: typeof InvoicesInvoiceIdImport
+      parentRoute: typeof InvoicesImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
       fullPath: '/posts/$postId'
       preLoaderRoute: typeof PostsPostIdImport
       parentRoute: typeof PostsImport
+    }
+    '/invoices/': {
+      id: '/invoices/'
+      path: '/'
+      fullPath: '/invoices/'
+      preLoaderRoute: typeof InvoicesIndexImport
+      parentRoute: typeof InvoicesImport
     }
     '/posts/': {
       id: '/posts/'
@@ -77,6 +116,10 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  InvoicesRoute: InvoicesRoute.addChildren({
+    InvoicesInvoiceIdRoute,
+    InvoicesIndexRoute,
+  }),
   PostsRoute: PostsRoute.addChildren({ PostsPostIdRoute, PostsIndexRoute }),
 })
 
