@@ -1,19 +1,6 @@
 import { createApp, createRouter, defineEventHandler } from "vinxi/http";
 
-const POSTS = [
-	{ id: "1", title: "First post" },
-	{ id: "2", title: "Second post" },
-	{ id: "3", title: "Third post" },
-	{ id: "4", title: "Fourth post" },
-	{ id: "5", title: "Fifth post" },
-	{ id: "6", title: "Sixth post" },
-	{ id: "7", title: "Seventh post" },
-	{ id: "8", title: "Eighth post" },
-	{ id: "9", title: "Ninth post" },
-	{ id: "10", title: "Tenth post" },
-];
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { ITEMS as POSTS, sleep } from "./common";
 
 const app = createApp();
 
@@ -23,7 +10,12 @@ postsRouter.get(
 	defineEventHandler(async () => {
 		await sleep(750);
 
-		return new Response(JSON.stringify(POSTS), {
+		const posts = POSTS.map((invoice) => ({
+			id: invoice.id,
+			title: invoice.title.replace("--item--", "Post"),
+		}));
+
+		return new Response(JSON.stringify(posts), {
 			status: 200,
 			headers: { "Content-Type": "application/json" },
 		});
@@ -40,10 +32,12 @@ postIdRouter.get(
 
 		const post = POSTS.find((p) => p.id === postId);
 		if (!post) {
-			return new Response(`Post not found with an ID of "${postId}".`, {
+			return new Response(`A post with an ID of "${postId}" was not found.`, {
 				status: 404,
 			});
 		}
+
+		post.title = post.title.replace("--item--", "Post");
 
 		return new Response(JSON.stringify(post), {
 			status: 200,

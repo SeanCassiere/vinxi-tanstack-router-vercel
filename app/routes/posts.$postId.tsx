@@ -1,8 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	type ErrorComponentProps,
+} from "@tanstack/react-router";
 
 async function fetchPost(
 	postId: string
-): Promise<{ id: string; title: string }> {
+): Promise<{ id: string; title: string; content: string }> {
 	const res = await fetch("/api/posts/" + postId);
 
 	if (res.status === 404) {
@@ -15,15 +18,7 @@ async function fetchPost(
 
 export const Route = createFileRoute("/posts/$postId")({
 	loader: ({ params }) => fetchPost(params.postId),
-	errorComponent: ({ error }) => (
-		<div className='grid gap-2'>
-			<h3 className='text-2xl mb-2'>Post not found</h3>
-			<p>This is the error message.</p>
-			<pre className='p-2 border border-rounded border-red-500'>
-				{error.message}
-			</pre>
-		</div>
-	),
+	errorComponent: ErrorComponent,
 	component: Post,
 });
 
@@ -33,6 +28,19 @@ function Post() {
 	return (
 		<div>
 			<h3 className='text-xl mb-2'>{post.title}</h3>
+			<p>{post.content}</p>
+		</div>
+	);
+}
+
+function ErrorComponent({ error }: ErrorComponentProps) {
+	return (
+		<div className='grid gap-2 w-full'>
+			<h3 className='text-2xl mb-2'>Post not found</h3>
+			<p>This is the error message.</p>
+			<p className='p-2 border border-rounded border-red-500 break-all font-mono'>
+				{error.message}
+			</p>
 		</div>
 	);
 }

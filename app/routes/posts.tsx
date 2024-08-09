@@ -1,4 +1,11 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	MatchRoute,
+	Outlet,
+} from "@tanstack/react-router";
+
+import { Spinner } from "./-components/spinner";
 
 async function fetchPosts(): Promise<Array<{ id: string; title: string }>> {
 	const res = await fetch("/api/posts");
@@ -14,16 +21,9 @@ function Posts() {
 	const posts = Route.useLoaderData();
 	return (
 		<div className='p-4 grid gap-2'>
-			<h2 className='text-xl'>Posts</h2>
+			<h2 className='text-xl font-bold'>Posts</h2>
 			<p>
-				These posts are fetched from{" "}
-				<a href='/api/posts' target='_blank' className='text-blue-500'>
-					/api/posts
-				</a>
-				.
-			</p>
-			<p>
-				All data on this page is retrieved using HTTP using the Javascript{" "}
+				These posts are fetched from <strong>/api/...</strong> using the{" "}
 				<a
 					href='https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch'
 					target='_blank'
@@ -31,26 +31,34 @@ function Posts() {
 				>
 					Fetch API
 				</a>
-				.
 			</p>
 			<hr />
-			<div className='lg:grid lg:grid-cols-12'>
-				<ul className='grid gap-2 lg:col-span-4'>
-					{[...posts, { id: "i-dont-exist", title: "Not found" }].map(
-						(post, idx) => (
+			<div className='grid gap-4 divide-y lg:divide-y-0 lg:divide-x lg:grid lg:grid-cols-12'>
+				<ul className='grid lg:col-span-4 py-4 gap-2'>
+					{[...posts, { id: "i-dont-exist", title: "A 404 post" }].map(
+						(post) => (
 							<li key={post.id}>
 								<Link
 									to='/posts/$postId'
 									params={{ postId: post.id }}
-									className='data-[status=active]:underline'
+									className='focus:underline data-[status=active]:font-bold font-mono tracking-wider'
 								>
-									{idx + 1} - {post.title}
+									#{post.id} - {post.title}{" "}
+									<MatchRoute
+										to='/posts/$postId'
+										params={{
+											postId: post.id,
+										}}
+										pending
+									>
+										<Spinner />
+									</MatchRoute>
 								</Link>
 							</li>
 						)
 					)}
 				</ul>
-				<div className='lg:col-span-8'>
+				<div className='py-4 lg:pl-4 lg:col-span-8'>
 					<Outlet />
 				</div>
 			</div>

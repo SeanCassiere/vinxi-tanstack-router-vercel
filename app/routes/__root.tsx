@@ -4,6 +4,7 @@ import {
 	Outlet,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+
 import type { trpc } from "../trpc.config";
 
 export const Route = createRootRouteWithContext<{
@@ -19,7 +20,7 @@ export const Route = createRootRouteWithContext<{
 					<li>
 						<Link
 							to='/'
-							className='font-medium data-[status=active]:font-bold'
+							className='data-[status=active]:font-bold focus:underline hover:underline'
 							activeOptions={{
 								exact: true,
 								includeSearch: false,
@@ -32,7 +33,7 @@ export const Route = createRootRouteWithContext<{
 					<li>
 						<Link
 							to='/posts'
-							className='font-medium data-[status=active]:font-bold'
+							className='data-[status=active]:font-bold focus:underline hover:underline'
 						>
 							Posts (fetch)
 						</Link>
@@ -40,10 +41,19 @@ export const Route = createRootRouteWithContext<{
 					<li>
 						<Link
 							to='/invoices'
-							className='font-medium data-[status=active]:font-bold'
+							className='data-[status=active]:font-bold focus:underline hover:underline'
 						>
 							Invoices (tRPC)
 						</Link>
+					</li>
+					<li>
+						<a
+							className='focus:underline hover:underline'
+							href='https://github.com/seancassiere/vinxi-tanstack-router-vercel'
+							target='_blank'
+						>
+							GitHub
+						</a>
 					</li>
 				</ul>
 			</nav>
