@@ -129,6 +129,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# MacOS
+.DS_Store
+
 # App build output
 .vinxi
 .vercel
