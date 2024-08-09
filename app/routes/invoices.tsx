@@ -20,7 +20,11 @@ function Invoices() {
 			<h2 className='text-xl font-bold'>Invoices</h2>
 			<p>
 				These invoices are fetched from <strong>/trpc/...</strong> using{" "}
-				<a href='https://trpc.io' target='_blank' className='text-blue-500'>
+				<a
+					href='https://trpc.io'
+					target='_blank'
+					className='underline decoration-wavy decoration-blue-500 underline-offset-4 hover:text-blue-500 focus:text-blue-500 transition-colors'
+				>
 					tRPC
 				</a>
 				.

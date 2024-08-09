@@ -13,8 +13,15 @@ export const Route = createRootRouteWithContext<{
 	component: () => (
 		<>
 			<nav className='p-4 grid gap-2'>
-				<h1 className='text-2xl lg:text-4xl font-bold'>
-					Vinxi + TanStack Router
+				<h1 className='text-2xl mb-2 lg:text-4xl font-bold'>
+					Using{" "}
+					<a
+						href='https://vinxi.vercel.app/'
+						className='underline decoration-wavy decoration-pink-500 decoration-2 underline-offset-8 hover:text-pink-500 focus:text-pink-500 transition-colors'
+						target='_blank'
+					>
+						Vinxi
+					</a>
 				</h1>
 				<ul className='flex gap-4'>
 					<li>

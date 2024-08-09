@@ -27,7 +27,7 @@ function Posts() {
 				<a
 					href='https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch'
 					target='_blank'
-					className='text-blue-500'
+					className='underline decoration-wavy decoration-pink-500 underline-offset-4 hover:text-pink-500 focus:text-pink-500 transition-colors'
 				>
 					Fetch API
 				</a>
