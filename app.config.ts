@@ -32,6 +32,14 @@ export default createApp({
 			plugins: () => [reactRefresh()],
 		},
 		{
+			type: "http",
+			name: "apollo-graphql",
+			base: "/apollo-graphql",
+			handler: "./handler.apollo-graphql.ts",
+			target: "server",
+			plugins: () => [reactRefresh()],
+		},
+		{
 			type: "spa",
 			name: "client",
 			handler: "./index.html",

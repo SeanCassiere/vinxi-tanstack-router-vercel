@@ -6,9 +6,11 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 import type { trpc } from "../trpc.config";
+import type { apolloPreloadQuery } from "../apollo.config";
 
 export const Route = createRootRouteWithContext<{
 	trpc: typeof trpc;
+	apolloPreloadQuery: typeof apolloPreloadQuery;
 }>()({
 	component: () => (
 		<>
@@ -23,7 +25,7 @@ export const Route = createRootRouteWithContext<{
 						Vinxi
 					</a>
 				</h1>
-				<ul className='flex gap-4'>
+				<ul className='flex gap-4 [&>li]:min-w-max overflow-y-auto'>
 					<li>
 						<Link
 							to='/'
@@ -51,6 +53,14 @@ export const Route = createRootRouteWithContext<{
 							className='data-[status=active]:font-bold focus:underline hover:underline'
 						>
 							Invoices (tRPC)
+						</Link>
+					</li>
+					<li>
+						<Link
+							to='/blog'
+							className='data-[status=active]:font-bold focus:underline hover:underline'
+						>
+							Blog (apollo graphql)
 						</Link>
 					</li>
 					<li>

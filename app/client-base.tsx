@@ -4,6 +4,8 @@ import { routeTree } from "./routeTree.gen";
 import { trpc } from "./trpc.config";
 
 import "./client-base.css";
+import { ApolloProvider } from "@apollo/client";
+import { apolloClient, apolloPreloadQuery } from "./apollo.config";
 
 // Create a new router instance
 const router = createRouter({
@@ -11,6 +13,10 @@ const router = createRouter({
 	defaultPreload: "intent",
 	context: {
 		trpc,
+		apolloPreloadQuery,
+	},
+	Wrap({ children }) {
+		return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 	},
 });
 

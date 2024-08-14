@@ -14,14 +14,19 @@
 	"author": "SeanCassiere",
 	"license": "MIT",
 	"dependencies": {
-		"@tanstack/react-router": "^1.46.8",
-		"@tanstack/router-devtools": "^1.46.9",
+		"@apollo/client": "^3.11.4",
+		"@apollo/server": "^4.11.0",
+		"@as-integrations/h3": "^1.2.1",
+		"@tanstack/react-router": "^1.47.5",
+		"@tanstack/router-devtools": "^1.47.5",
 		"@tanstack/router-plugin": "^1.47.0",
 		"@trpc/client": "11.0.0-rc.477",
 		"@trpc/server": "11.0.0-rc.477",
 		"@vinxi/react": "^0.2.3",
 		"@vitejs/plugin-react": "^4.3.1",
 		"dedent": "^1.5.3",
+		"graphql": "^16.9.0",
+		"graphql-ws": "^5.16.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"vinxi": "^0.4.1",
@@ -32,7 +37,7 @@
 		"@types/react-dom": "^18.3.0",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8.4.41",
-		"tailwindcss": "^3.4.8",
+		"tailwindcss": "^3.4.10",
 		"typescript": "^5.5.4"
 	}
 }
